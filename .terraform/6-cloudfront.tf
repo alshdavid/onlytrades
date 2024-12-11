@@ -64,26 +64,30 @@ resource "aws_cloudfront_distribution" "website_cloudfront" {
   }
 }
 
-resource null_resource cache_invalidation {
-  # prevent invalidating cache before new s3 file is uploaded
-  depends_on = [
-    aws_cloudfront_distribution.website_cloudfront,
-    aws_s3_object.upload_object,
-  ]
+# resource null_resource cache_invalidation {
+#   # prevent invalidating cache before new s3 file is uploaded
+#   depends_on = [
+#     aws_cloudfront_distribution.website_cloudfront,
+#     aws_s3_object.upload_object,
+#   ]
 
-  # for_each = fileset("${local.upload_directory}/", "**/*.*")
+#   # for_each = fileset("${local.upload_directory}/", "**/*.*")
 
-  # triggers = {
-  #   hash = filemd5("${local.upload_directory}/${each.value}")
-  # }
+#   # triggers = {
+#   #   hash = filemd5("${local.upload_directory}/${each.value}")
+#   # }
 
-  provisioner local-exec {
-    # sleep is necessary to prevent throttling when invalidating many files
-    # possible way of dealing with parallelism (though would lose the indiviual triggers): https://discuss.hashicorp.com/t/specify-parallelism-for-null-resource/20884/2
-    command = "sleep 1; aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.website_cloudfront.id} --paths '/*'"
-  }
-}
+#   provisioner local-exec {
+#     # sleep is necessary to prevent throttling when invalidating many files
+#     # possible way of dealing with parallelism (though would lose the indiviual triggers): https://discuss.hashicorp.com/t/specify-parallelism-for-null-resource/20884/2
+#     command = "sleep 1; aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.website_cloudfront.id} --paths '/*'"
+#   }
+# }
 
 output "website_url" {
   value = "http://${aws_cloudfront_distribution.website_cloudfront.domain_name}"
+}
+
+output "cloudfront_id" {
+  value = aws_cloudfront_distribution.website_cloudfront.id
 }
