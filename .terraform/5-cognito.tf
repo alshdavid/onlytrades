@@ -1,5 +1,5 @@
 resource "aws_cognito_user_pool" "user_pool" {
-  name = "oauth-user-pool"
+  name = "alshdavid-onlytrades"
 
   # username_attributes = ["email"]
   alias_attributes = ["email", "preferred_username"]
@@ -34,7 +34,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 }
 
 resource "aws_cognito_user_pool_client" "client" {
-  name                                  = "api-client"
+  name                                  = "lambda-client"
 
   user_pool_id                          = aws_cognito_user_pool.user_pool.id
   generate_secret                       = true
@@ -51,7 +51,7 @@ resource "aws_cognito_user_pool_client" "client" {
 }
 
 resource "aws_cognito_user_pool_domain" "cognito-domain" {
-  domain       = "adtlcr"
+  domain       = "alshdavid-onlytrades"
   user_pool_id = aws_cognito_user_pool.user_pool.id
 }
 
