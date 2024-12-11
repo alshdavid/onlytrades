@@ -1,0 +1,23 @@
+[package]
+name = "httpd"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = "1"
+tokio = { version = "1", features = ["full"] }
+normalize-path = "*"
+pathdiff = "*"
+mime_guess = "*"
+hyper = { version = "*", features = ["http1"] }
+http-body-util = "*"
+hyper-util = { version = "*", features = ["server-graceful"] }
+num_cpus = "*"
+handlebars = "*"
+serde_json = "*"
+chrono = "*"
+colored = "*"
+tokio-util = { version = "*", features = ["io", "io-util", "futures-util"] }
+futures = "*"
+anyhow = "*"
+once_cell = "*"

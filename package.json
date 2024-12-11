@@ -1,0 +1,15 @@
+{
+  "name": "@workspace/root",
+  "workspaces": [
+    "./packages/client"
+  ],
+  "dependencies": {
+    "typescript": "*",
+    "@rspack/core": "*",
+    "@rspack/cli": "*",
+    "sass-loader": "*",
+    "sass-embedded": "*",
+    "css-loader": "*",
+    "html-webpack-plugin": "*"
+  }
+}

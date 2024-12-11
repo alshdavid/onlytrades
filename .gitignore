@@ -1,0 +1,11 @@
+node_modules
+.DS_Store
+pnpm-lock.yaml
+*.env
+!default.env
+.terraform*
+!/.terraform
+*.tfstate*
+*.zip
+dist
+target
