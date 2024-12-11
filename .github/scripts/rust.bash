@@ -15,3 +15,4 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify
 which cargo
 
 rustup target add aarch64-unknown-linux-musl
+rustup target add x86_64-unknown-linux-musl

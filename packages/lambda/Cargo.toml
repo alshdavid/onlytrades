@@ -7,8 +7,10 @@ edition = "2021"
 lambda_http = "*"
 lambda_runtime = "*"
 serde = { version = "*", features = ["derive"] }
-tokio = { version = "*", features = ["macros"] }
+tokio = { version = "*", features = ["full"] }
 url = "*"
 serde_json = "*"
 anyhow = "*"
-querystring = "*"
+ureq = { version = "*", features = ["socks-proxy", "charset", "json"] }
+headers = "*"
+chrono = "*"
