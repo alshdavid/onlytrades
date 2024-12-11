@@ -43,8 +43,8 @@ resource "aws_cognito_user_pool_client" "client" {
   explicit_auth_flows                   = ["ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH"]
   
   supported_identity_providers          = ["COGNITO"]
-  callback_urls                         = ["${aws_apigatewayv2_stage.prod.invoke_url}api/auth/login/callback", "http://localhost:4200/api/auth/login/callback"]
-  logout_urls                           = ["${aws_apigatewayv2_stage.prod.invoke_url}api/auth/logout/callback", "http://localhost:4200/api/auth/logout/callback"]
+  callback_urls                         = ["https://${aws_cloudfront_distribution.website_cloudfront.domain_name}/api/auth/login/callback", "http://localhost:4200/api/auth/login/callback"]
+  logout_urls                           = ["https://${aws_cloudfront_distribution.website_cloudfront.domain_name}/api/auth/logout/callback", "http://localhost:4200/api/auth/logout/callback"]
   allowed_oauth_flows                   = ["code"]
   allowed_oauth_flows_user_pool_client  = true
   allowed_oauth_scopes                  = ["email", "openid"]
