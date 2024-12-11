@@ -6,11 +6,11 @@ resource "random_string" "random" {
 
 variable "bucket_name" {
   type = string
-  default = "alshdavid-templates-rust-lambda-cognito-rust"
+  default = "alshdavid-onlytrades-web"
 }
 
 variable "project_name" {
   type = string
-  default = "alshdavid-templates-rust-lambda-cognito-rust"
+  default = "alshdavid-onlytrades"
 }
 

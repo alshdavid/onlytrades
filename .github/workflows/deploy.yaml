@@ -28,7 +28,6 @@ jobs:
           ls -l dist/client
           ls -l dist/lambda
       - env:
-          PROJECT_NAME: aws-lambda-cognito-rust
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -38,8 +37,5 @@ jobs:
           aws --profile default configure set aws_access_key_id "${{ secrets.AWS_ACCESS_KEY_ID }}"
           aws --profile default configure set aws_secret_access_key "${{ secrets.AWS_ACCESS_KEY_ID }}"
           aws configure set region "ap-southeast-2"
-
-          aws s3 ls
-
           just deploy
         

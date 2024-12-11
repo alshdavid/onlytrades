@@ -2,7 +2,7 @@ terraform {
   cloud { 
     organization = "alshdavid" 
     workspaces { 
-      name = "aws-lambda-cognito-rust" 
+      name = "onlytrades" 
     } 
   } 
 
