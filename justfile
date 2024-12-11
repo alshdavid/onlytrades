@@ -36,4 +36,8 @@ build-publish:
   mv {{ justfile_directory() }}/target/aarch64-unknown-linux-musl/release/lambda {{ justfile_directory() }}/dist/lambda/bootstrap
 
 deploy:
-  cd .terraform && terraform init && terraform validate && terraform apply -auto-approve
+  cd .terraform && \
+  terraform init && \
+  terraform validate && \
+  terraform apply -auto-approve && \
+  aws cloudfront create-invalidation --distribution-id $(terraform output -raw cloudfront_id) --paths '/*'
