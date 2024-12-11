@@ -6,13 +6,20 @@ use lambda_http::Error;
 use lambda_http::Request;
 use lambda_http::Response;
 
-async fn function_handler(_event: Request) -> Result<Response<Body>, Error> {
-  let resp = Response::builder()
-    .status(200)
-    .header("content-type", "text/html")
-    .body("Hello AWS Lambda HTTP request".into())
-    .map_err(Box::new)?;
-  Ok(resp)
+async fn function_handler(event: Request) -> Result<Response<Body>, Error> {
+  if event.uri() == "/api/ping" {
+    Ok(Response::builder()
+      .status(200)
+      .header("Content-Type", "application/json")
+      .body("{\"message\":\"pong\"}".into())
+      .map_err(Box::new)?)
+  } else {
+    Ok(Response::builder()
+      .status(200)
+      .header("Content-Type", "application/json")
+      .body("{\"message\":\"hello world\"}".into())
+      .map_err(Box::new)?)
+  }
 }
 
 #[tokio::main]
